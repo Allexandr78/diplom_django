@@ -1,0 +1,6 @@
+/myenv/
+.pylintrc
+
+.vscode
+.idea
+.myenv
