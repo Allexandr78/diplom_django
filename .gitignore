@@ -4,3 +4,4 @@
 .vscode
 .idea
 .myenv
+dip_django/db.sqlite3
