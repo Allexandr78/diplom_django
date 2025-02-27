@@ -6,7 +6,8 @@ class Recipe(models.Model):
     ingredients = models.TextField()
     instructions = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
 
     def __str__(self):
-        return str(self.title)
+        return self.title
 

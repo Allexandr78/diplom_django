@@ -1,3 +1,4 @@
 from django.contrib import admin
+from .models import Recipe  # Импортируй свою модель
 
-# Register your models here.
+admin.site.register(Recipe)  # Регистрируем модель в админке

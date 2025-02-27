@@ -6,10 +6,12 @@
     <title>Семейное меню</title>
 </head>
 <body>
-    <h1>Рецепты</h1>
+    <h1>Блюда</h1>
     <ul>
         {% for recipe in recipes %}
             <li><strong>{{ recipe.title }}</strong> - {{ recipe.description }}</li>
+            {% comment %} <li><h1>Ингридиенты</h1> {{recipe.ingredients}} </li>
+            <li><h1>Рецепт</h1> {{recipe.instructions}} </li> {% endcomment %}
         {% endfor %}
     </ul>
 </body>
