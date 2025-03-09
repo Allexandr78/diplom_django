@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Добавить новый рецепт</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ recipe_form.as_p }}
+
+    <h3>Ингредиенты</h3>
+    <div id="ingredient-list">
+        <div>
+            <input type="text" name="ingredient_name" placeholder="Ингредиент">
+            <input type="text" name="ingredient_amount" placeholder="Количество">
+        </div>
+    </div>
+    <button type="button" onclick="addIngredient()">Добавить ингредиент</button>
+
+    <h3>Шаги приготовления</h3>
+    <div id="step-list">
+        <div>
+            <input type="text" name="step_instruction" placeholder="Описание шага">
+        </div>
+    </div>
+    <button type="button" onclick="addStep()">Добавить шаг</button>
+
+    <button type="submit">Сохранить</button>
+</form>
+
+<script>
+function addIngredient() {
+    let container = document.getElementById("ingredient-list");
+    let div = document.createElement("div");
+    div.innerHTML = '<input type="text" name="ingredient_name" placeholder="Ингредиент"> \
+                     <input type="text" name="ingredient_amount" placeholder="Количество">';
+    container.appendChild(div);
+}
+
+function addStep() {
+    let container = document.getElementById("step-list");
+    let div = document.createElement("div");
+    div.innerHTML = '<input type="text" name="step_instruction" placeholder="Описание шага">';
+    container.appendChild(div);
+}
+</script>
+{% endblock %}

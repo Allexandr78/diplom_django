@@ -1,0 +1,35 @@
+body {
+  font-family: Figtree;
+  background-image: url(img/home/home.jpg);
+  background-repeat: no-repeat;
+}
+
+
+header {
+  margin-bottom: 2rem;
+
+}
+
+main {
+  background-size: cover;
+  padding: 2rem 0;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.home {
+  color: #800080;
+  backdrop-filter: sepia(90%); 
+  padding: 2rem;
+  margin-top: 50px;
+  border-radius: 100px;
+}
+

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block form %}
+<h2>Добавить новый рецепт</h2>
+<form method="POST">
+    {% csrf_token %}
+    
+    <h3>Основная информация</h3>
+    {{ recipe_form.as_p }}
+
+    <h3>Ингредиенты</h3>
+    {{ ingredient_formset.management_form }}
+    {% for form in ingredient_formset %}
+        {{ form.as_p }}
+    {% endfor %}
+
+    <h3>Шаги приготовления</h3>
+    {{ step_formset.management_form }}
+    {% for form in step_formset %}
+        {{ form.as_p }}
+    {% endfor %}
+
+    <button type="submit">Сохранить рецепт</button>
+</form>
+
+<a href="{% url 'recipe_list' %}">Вернуться к списку</a>
+{% endblock %}

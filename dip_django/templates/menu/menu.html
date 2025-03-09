@@ -1,0 +1,66 @@
+{% extends 'templates/base.html' %}
+{% load static %}
+
+{% block menu %}
+
+    <section id="module1" class="col-md-6 mb-5">
+            <h2>"Меню на неделю"</h2>
+        <div class="accordion" id="accordionModule2">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingA">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA"
+                aria-expanded="true" aria-controls="collapseA">
+                Элемент списка A
+            </button>
+            </h2>
+            <div id="collapseA" class="accordion-collapse collapse show" aria-labelledby="headingA"
+            data-bs-parent="#accordionModule2">
+            <div class="accordion-body">
+                <ul class="list-group">
+                <li class="list-group-item">Подэлемент A1</li>
+                <li class="list-group-item">Подэлемент A2</li>
+                <li class="list-group-item">Подэлемент A3</li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingB">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseB" aria-expanded="false" aria-controls="collapseB">
+                Элемент списка B
+            </button>
+            </h2>
+            <div id="collapseB" class="accordion-collapse collapse" aria-labelledby="headingB"
+            data-bs-parent="#accordionModule2">
+            <div class="accordion-body">
+                <ul class="list-group">
+                <li class="list-group-item">Подэлемент B1</li>
+                <li class="list-group-item">Подэлемент B2</li>
+                <li class="list-group-item">Подэлемент B3</li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingC">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseC" aria-expanded="false" aria-controls="collapseC">
+                Элемент списка C
+            </button>
+            </h2>
+            <div id="collapseC" class="accordion-collapse collapse" aria-labelledby="headingC"
+            data-bs-parent="#accordionModule2">
+            <div class="accordion-body">
+                <ul class="list-group">
+                <li class="list-group-item">Подэлемент C1</li>
+                <li class="list-group-item">Подэлемент C2</li>
+                <li class="list-group-item">Подэлемент C3</li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+{% endblock %}
