@@ -21,6 +21,6 @@ def about(request):
         В данной функции создается словарь about_context, который содержит информацию о странице.
         Далее функция render возвращает страницу about.html, передавая в нее словарь about_context.
     '''
-    about_context = {"title": "О нас", "content": "Добро пожаловать на страницу «О нас»"}
+    about_context = {"title": "О нас", "content": "Добро пожаловать в Семейное меню!"}
 
     return render(request, "main/about.html", about_context)

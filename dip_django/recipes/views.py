@@ -1,17 +1,26 @@
+""" Этот файл содержит представления для приложения recipes. """
+
 from django.forms import inlineformset_factory
 from .models import Recipe, Ingredient, Step
 from .forms import RecipeForm, IngredientForm, StepForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
-def menu(request):
-      return render(request, "recipes/menu.html")
 
-
-def base(request):
+def recipes(request):
+    """Представление для отображения всех рецептов."""
     recipes = Recipe.objects.all()
-    
-    return render(request, "base.html", {"recipe": recipes})
+    recipes_context = {
+        "title": "Рецепты",
+        "content": "Список рецептов",
+        "recipes": recipes,
+    }
+    return render(
+        request,
+        "recipes/recipes.html",
+        recipes_context,
+    )
+
 
 def recipe_list(request):
     recipes = Recipe.objects.all()
@@ -65,7 +74,9 @@ def recipe_detail(request, pk):
 
 @login_required
 def create_recipe(request):
-    IngredientFormSet = inlineformset_factory(Recipe, Ingredient, form=IngredientForm, extra=3)
+    IngredientFormSet = inlineformset_factory(
+        Recipe, Ingredient, form=IngredientForm, extra=3
+    )
     StepFormSet = inlineformset_factory(Recipe, Step, form=StepForm, extra=3)
 
     if request.method == "POST":
@@ -73,9 +84,13 @@ def create_recipe(request):
         ingredient_formset = IngredientFormSet(request.POST)
         step_formset = StepFormSet(request.POST)
 
-        if recipe_form.is_valid() and ingredient_formset.is_valid() and step_formset.is_valid():
+        if (
+            recipe_form.is_valid()
+            and ingredient_formset.is_valid()
+            and step_formset.is_valid()
+        ):
             recipe = recipe_form.save(commit=False)
-            recipe.author = request.user  
+            recipe.author = request.user
             recipe.save()
 
             ingredient_formset.instance = recipe
@@ -83,15 +98,19 @@ def create_recipe(request):
             ingredient_formset.save()
             step_formset.save()
 
-            return redirect('recipe_list') 
+            return redirect("recipe_list")
 
     else:
         recipe_form = RecipeForm()
         ingredient_formset = IngredientFormSet()
         step_formset = StepFormSet()
 
-    return render(request, 'recipes/recipe_form.html', {
-        'recipe_form': recipe_form,
-        'ingredient_formset': ingredient_formset,
-        'step_formset': step_formset,
-    })
+    return render(
+        request,
+        "recipes/recipe_form.html",
+        {
+            "recipe_form": recipe_form,
+            "ingredient_formset": ingredient_formset,
+            "step_formset": step_formset,
+        },
+    )

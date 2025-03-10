@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block carusel %}
+  <div class="home">
+    <div id="carouselExampleCaptions" class="carousel carousel-dark slide">
+      <div class="carousel-indicators">
+        {% for recip in recipes %}
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="true" aria-label="Slide {{ forloop.counter }}"></button>
+        {% endfor %}
+      </div>
+      <div class="carousel-inner">
+        {% for recip in recipes %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <img src="{{ recip.image.url }}" class="d-block w-50" alt="{{ recip.title }}" />
+            <div class="carousel-caption d-none d-md-block">
+              <div class="text-end fw-bold text-white-shadow">
+                <h1>{{ recip.title }}</h1>
+                {{ recip.description|safe }}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+{% endblock %}

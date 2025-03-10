@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Recipe(models.Model):
     title = models.CharField(max_length=255, verbose_name="Название блюда")
     description = models.TextField(blank=True, verbose_name="Описание")
+    image = models.ImageField(blank=True, upload_to='static/img/carusel/', verbose_name="Изображение")
     author = models.ForeignKey(
         null=True,
         blank=True,
