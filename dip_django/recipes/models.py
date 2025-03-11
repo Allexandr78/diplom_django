@@ -48,4 +48,5 @@ class Step(models.Model):
 
 
     def __str__(self):
-        return f"{self.recipe}: Шаг {self.number}: {self.description[:30]}..."
+        description = self.description if self.description else ""
+        return f"{self.recipe}: Шаг {self.number}: {description[:30]}..."

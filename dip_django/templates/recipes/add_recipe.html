@@ -1,45 +1,94 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
 
-{% block content %}
-<h2>Добавить новый рецепт</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ recipe_form.as_p }}
+{% block add %}
+  <div class="container mt-4 ">
+    <h2 class="mb-4">Добавить новый рецепт</h2>
+    <form method="POST" enctype="multipart/form-data" class="shadow p-4  rounded">
+      {% csrf_token %}
+      <div class="mb-3">{{ recipe_form.title.label_tag }}
+        {{ recipe_form.title }}</div>
+      <div class="mb-3">{{ recipe_form.description.label_tag }}
+        {{ recipe_form.description }}</div>
+      <div class="mb-3">{{ recipe_form.image.label_tag }}
+        {{ recipe_form.image }}</div>
 
-    <h3>Ингредиенты</h3>
-    <div id="ingredient-list">
-        <div>
-            <input type="text" name="ingredient_name" placeholder="Ингредиент">
-            <input type="text" name="ingredient_amount" placeholder="Количество">
+      <h4>Ингредиенты</h4>
+      <div id="ingredients">
+        <div class="row mb-2">
+          <div class="col">
+            <input type="text" name="ingredient_name" class="form-control" placeholder="Название ингредиента" />
+          </div>
+          <div class="col">
+            <input type="text" name="ingredient_quantity" class="form-control" placeholder="Количество" />
+          </div>
+          <div class="col-auto">
+            <button type="button" class="btn btn-success add-ingredient">+</button>
+          </div>
         </div>
-    </div>
-    <button type="button" onclick="addIngredient()">Добавить ингредиент</button>
+      </div>
 
-    <h3>Шаги приготовления</h3>
-    <div id="step-list">
-        <div>
-            <input type="text" name="step_instruction" placeholder="Описание шага">
+      <h4>Пошаговый рецепт</h4>
+      <div id="steps">
+        <div class="row mb-2">
+          <div class="col">
+            <input type="text" name="step_description" class="form-control" placeholder="Описание шага" />
+          </div>
+          <div class="col-auto">
+            <button type="button" class="btn btn-success add-step">+</button>
+          </div>
         </div>
-    </div>
-    <button type="button" onclick="addStep()">Добавить шаг</button>
+      </div>
 
-    <button type="submit">Сохранить</button>
-</form>
+      <button type="submit" class="btn btn-success mt-3">Сохранить</button>
+      <a href="{% url 'recipes' %}" class="btn btn-secondary mt-3">Отмена</a>
+    </form>
+  </div>
 
-<script>
-function addIngredient() {
-    let container = document.getElementById("ingredient-list");
-    let div = document.createElement("div");
-    div.innerHTML = '<input type="text" name="ingredient_name" placeholder="Ингредиент"> \
-                     <input type="text" name="ingredient_amount" placeholder="Количество">';
-    container.appendChild(div);
-}
-
-function addStep() {
-    let container = document.getElementById("step-list");
-    let div = document.createElement("div");
-    div.innerHTML = '<input type="text" name="step_instruction" placeholder="Описание шага">';
-    container.appendChild(div);
-}
-</script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelector('.add-ingredient').addEventListener('click', function () {
+        let ingredientDiv = document.createElement('div')
+        ingredientDiv.classList.add('row', 'mb-2')
+        ingredientDiv.innerHTML = `
+                  <div class="col">
+                      <input type="text" name="ingredient_name" class="form-control" placeholder="Название ингредиента">
+                  </div>
+                  <div class="col">
+                      <input type="text" name="ingredient_quantity" class="form-control" placeholder="Количество">
+                  </div>
+                  <div class="col-auto">
+                      <button type="button" class="btn btn-danger remove-ingredient">-</button>
+                  </div>
+              `
+        document.getElementById('ingredients').appendChild(ingredientDiv)
+      })
+    
+      document.getElementById('ingredients').addEventListener('click', function (e) {
+        if (e.target.classList.contains('remove-ingredient')) {
+          e.target.closest('.row').remove()
+        }
+      })
+    
+      document.querySelector('.add-step').addEventListener('click', function () {
+        let stepDiv = document.createElement('div')
+        stepDiv.classList.add('row', 'mb-2')
+        stepDiv.innerHTML = `
+                  <div class="col">
+                      <input type="text" name="step_description" class="form-control" placeholder="Описание шага">
+                  </div>
+                  <div class="col-auto">
+                      <button type="button" class="btn btn-danger remove-step">-</button>
+                  </div>
+              `
+        document.getElementById('steps').appendChild(stepDiv)
+      })
+    
+      document.getElementById('steps').addEventListener('click', function (e) {
+        if (e.target.classList.contains('remove-step')) {
+          e.target.closest('.row').remove()
+        }
+      })
+    })
+  </script>
 {% endblock %}

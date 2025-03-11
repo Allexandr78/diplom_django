@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block detail %}
+
+<div class="container mt-4 recept">
+    <div class="d-flex flex-wrap align-items-stretch">
+        <div class="me-4">
+            <h1 class="fw-bold">{{ dish.title }}</h1>
+            <p class="text-muted">{{ dish.description }}</p>
+            <img src="{{ dish.image.url }}" class="img-fluid rounded" alt="{{ dish.title }}" style="max-width: 400px;">
+        </div>
+        <div class="d-flex flex-column align-items-end">
+            <h3>Ингредиенты:</h3>
+            <ul class="list-group">
+                {% for ingredient in ingredients %}
+                    <li class="list-group-item">{{ ingredient.name }} - {{ ingredient.quantity }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="mt-4">
+        <h3>Пошаговый рецепт:</h3>
+        <ol class="list-group list-group-numbered">
+            {% for step in steps %}
+                <li class="list-group-item">
+                    <strong>Шаг {{ step.number }}:</strong> {{ step.description }}
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
+
+    <a href="{% url 'recipes' %}" class="btn btn-secondary mt-3">Назад</a>
+</div>
+
+
+
+{% endblock %}

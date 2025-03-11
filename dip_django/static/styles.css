@@ -2,12 +2,12 @@ body {
   font-family: Figtree;
   background-image: url(img/home/home.jpg);
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 
 header {
   margin-bottom: 2rem;
-
 }
 
 main {
@@ -26,10 +26,18 @@ footer {
 }
 
 .home {
-  color: #800080;
+  color: #000000;
   backdrop-filter: sepia(90%); 
   padding: 2rem;
   margin-top: 50px;
   border-radius: 50px;
 }
 
+.recept{
+  color: #020202;
+  background: rgba(253, 253, 253, 0.566);
+  padding: 2rem;
+  margin-top: 50px;
+  border-radius: 50px;
+ 
+}
