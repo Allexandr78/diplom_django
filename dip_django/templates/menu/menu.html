@@ -1,66 +1,45 @@
-{% extends 'templates/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block menu %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">{{content}}</h2>
+    <div class="row justify-content-center">
+        <ul class="list-group col-md-6 menu">
+            {% for day, recipe in menu_by_day.items %}
+                <li class="list-group-item d-flex flex-column flex-md-row justify-content-between align-items-center ">
+                    <strong>{{ day }}</strong>
+                    <span>
+                        {% if recipe %}
+                            {{ recipe.title }}
+                        {% else %}
+                            Нет блюда
+                        {% endif %}
+                    </span>
+                    <div>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="day" value="{{ day }}">
+                            <select name="recipe_id" class="form-select d-inline-block w-auto">
+                                {% for recipe in all_recipes %}
+                                    <option value="{{ recipe.id }}">{{ recipe.title }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit" name="action" value="add" class="btn btn-success btn-sm">➕</button>
+                            <button type="submit" name="action" value="remove" class="btn btn-danger btn-sm">❌</button>
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
 
-    <section id="module1" class="col-md-6 mb-5">
-            <h2>"Меню на неделю"</h2>
-        <div class="accordion" id="accordionModule2">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingA">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA"
-                aria-expanded="true" aria-controls="collapseA">
-                Элемент списка A
-            </button>
-            </h2>
-            <div id="collapseA" class="accordion-collapse collapse show" aria-labelledby="headingA"
-            data-bs-parent="#accordionModule2">
-            <div class="accordion-body">
-                <ul class="list-group">
-                <li class="list-group-item">Подэлемент A1</li>
-                <li class="list-group-item">Подэлемент A2</li>
-                <li class="list-group-item">Подэлемент A3</li>
-                </ul>
-            </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingB">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseB" aria-expanded="false" aria-controls="collapseB">
-                Элемент списка B
-            </button>
-            </h2>
-            <div id="collapseB" class="accordion-collapse collapse" aria-labelledby="headingB"
-            data-bs-parent="#accordionModule2">
-            <div class="accordion-body">
-                <ul class="list-group">
-                <li class="list-group-item">Подэлемент B1</li>
-                <li class="list-group-item">Подэлемент B2</li>
-                <li class="list-group-item">Подэлемент B3</li>
-                </ul>
-            </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingC">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseC" aria-expanded="false" aria-controls="collapseC">
-                Элемент списка C
-            </button>
-            </h2>
-            <div id="collapseC" class="accordion-collapse collapse" aria-labelledby="headingC"
-            data-bs-parent="#accordionModule2">
-            <div class="accordion-body">
-                <ul class="list-group">
-                <li class="list-group-item">Подэлемент C1</li>
-                <li class="list-group-item">Подэлемент C2</li>
-                <li class="list-group-item">Подэлемент C3</li>
-                </ul>
-            </div>
-            </div>
-        </div>
-        </div>
-    </section>
+            <li class="list-group-item text-center">
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="submit" name="action" value="random_all" class="btn btn-warning">🎲 Заполнить случайно</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>
 
 {% endblock %}

@@ -28,7 +28,7 @@
                 <a class="nav-link btn btn-success text-white" href="{% url "recipes" %}">Рецепты</a>
               </li>
               <li class="nav-item bg-dark">
-                <a class="nav-link btn btn-success text-white" href="#about">Меню</a>
+                <a class="nav-link btn btn-success text-white" href="{% url "menu" %}">Меню</a>
               </li>
               <li class="nav-item bg-dark">
                 <a class="nav-link btn btn-success text-white" href="#about">Список покупок</a>
@@ -68,20 +68,13 @@
     </header>
 
     <main class="container my-5">
-      {% block home %}
-      {% endblock %}
-      {% block about %}
-      {% endblock %}
-      {% block menu %}
-      {% endblock %}
-      {% block shopping_list %}
-      {% endblock %}
-      {% block detail %}
-      {% endblock %}
-      {% block card %}
-      {% endblock %}
-      {% block add %}
-      {% endblock %}
+      {% block home %}      {% endblock %}
+      {% block about %}      {% endblock %}
+      {% block card %}      {% endblock %}
+      {% block detail %}      {% endblock %}
+      {% block add %}      {% endblock %}
+      {% block menu %}      {% endblock %}
+      {% block shopping_list %}      {% endblock %}
     </main>
     <footer class="bg-dark text-white text-center py-3">
       <p>&copy; 2025 ADruykov</p>

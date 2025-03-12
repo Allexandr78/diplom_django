@@ -1,13 +1,12 @@
 body {
   font-family: Figtree;
   background-image: url(img/home/home.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 
 header {
   margin-bottom: 2rem;
+  --bs-tertiary-bg: #198754;
 }
 
 main {
@@ -27,10 +26,11 @@ footer {
 
 .home {
   color: #000000;
-  backdrop-filter: sepia(90%); 
+  background: rgba(255, 255, 255, 0.60);
   padding: 2rem;
   margin-top: 50px;
   border-radius: 50px;
+  background-size: cover;
 }
 
 .recept{
@@ -39,5 +39,20 @@ footer {
   padding: 2rem;
   margin-top: 50px;
   border-radius: 50px;
- 
+  --bs-body-bg: transparent;
+}
+
+.recept_card {
+  color: #000000;
+  --bs-body-bg: transparent;
+}
+
+.menu {
+  color: #000000;
+  background: rgba(253, 253, 253, 0.378);
+  padding: 2rem;
+  margin-top: 50px;
+  border-radius: 50px;
+  --bs-list-group-bg: #fffbe600; 
+  --bs-list-group-border-color: #050505; 
 }
