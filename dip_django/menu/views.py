@@ -1,4 +1,5 @@
-''' Модуль представлений приложения menu. '''
+""" Модуль представлений приложения menu. """
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from recipes.models import Recipe
@@ -9,7 +10,15 @@ import random
 @login_required
 def menu(request):
     """Отображение меню на неделю с возможностью случайного заполнения."""
-    week_days = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
+    week_days = [
+        "Понедельник",
+        "Вторник",
+        "Среда",
+        "Четверг",
+        "Пятница",
+        "Суббота",
+        "Воскресенье",
+    ]
     user_menu = {day: None for day in week_days}
 
     menu_items = MenuItem.objects.filter(user=request.user)
@@ -19,19 +28,27 @@ def menu(request):
     if request.method == "POST":
         action = request.POST.get("action")
 
-        if action == "random_all":  
+        if action == "random_all":
             recipes = list(Recipe.objects.all())
             if recipes:
-                random.shuffle(recipes)  
+                random.shuffle(recipes)
                 for day in week_days:
-                    recipe = recipes.pop() if recipes else random.choice(Recipe.objects.all())
-                    MenuItem.objects.update_or_create(user=request.user, day=day, defaults={"recipe": recipe})
+                    recipe = (
+                        recipes.pop()
+                        if recipes
+                        else random.choice(Recipe.objects.all())
+                    )
+                    MenuItem.objects.update_or_create(
+                        user=request.user, day=day, defaults={"recipe": recipe}
+                    )
 
         elif action == "add":
             day = request.POST.get("day")
             recipe_id = request.POST.get("recipe_id")
             recipe = Recipe.objects.get(id=recipe_id)
-            MenuItem.objects.update_or_create(user=request.user, day=day, defaults={"recipe": recipe})
+            MenuItem.objects.update_or_create(
+                user=request.user, day=day, defaults={"recipe": recipe}
+            )
 
         elif action == "remove":
             day = request.POST.get("day")

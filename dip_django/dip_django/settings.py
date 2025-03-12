@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "main",
     "recipes",
     "menu",
+    "shoping"
 ]
 
 MIDDLEWARE = [
