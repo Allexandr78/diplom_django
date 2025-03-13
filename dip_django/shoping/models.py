@@ -11,7 +11,7 @@ class ShoppingList(models.Model):
         User, on_delete=models.CASCADE, verbose_name="Пользователь"
     )
     ingredient = models.CharField(max_length=255, verbose_name="Ингредиент")
-    quantity = models.CharField(max_length=100, verbose_name="Количество")
+    quantity = models.CharField(max_length=100, null=True, verbose_name="Количество")
     objects = models.Manager()
 
     def __str__(self):

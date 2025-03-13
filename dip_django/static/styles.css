@@ -33,7 +33,7 @@ footer {
   background-size: cover;
 }
 
-.recept{
+.recept {
   color: #020202;
   background: rgba(253, 253, 253, 0.566);
   padding: 2rem;
@@ -53,6 +53,20 @@ footer {
   padding: 2rem;
   margin-top: 50px;
   border-radius: 50px;
-  --bs-list-group-bg: #fffbe600; 
-  --bs-list-group-border-color: #050505; 
+  --bs-list-group-bg: #fffbe600;
+  --bs-list-group-border-color: #050505;
+}
+
+.shopping-item {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.shopping-item.bought {
+  background-color: #069227bc !important;
+}
+
+.shopping-item.dom {
+  text-decoration: line-through;
+  opacity: 0.6;
 }

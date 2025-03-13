@@ -1,19 +1,97 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block shopping_list %}
 <div class="container mt-4">
-    <h2 class="mb-4">{{content}}</h2>
-    {% if shopping_list %}
-        <ul class="list-group">
-            {% for name, quantity in shopping_list.items %}
-                <li class="list-group-item d-flex justify-content-between">
-                    <span>{{ name }}</span>
-                    <span class="badge bg-primary">{{ quantity }}</span>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p class="text-muted">Вы еще не выбрали блюда для меню.</p>
-    {% endif %}
+  <h1 class="mb-3">{{ content }}</h1>
+
+  <div class="row">
+   
+    <div class="col-md-6">
+      <h3>Список покупок</h3>
+      <ul id="shopping-list" class="list-group">
+        {% for item in shopping_list %}
+          <li class="list-group-item shopping-item"
+              data-item="{{ item.name }}"
+              data-quantity="{{ item.quantity|floatformat:0 }}"
+              data-unit="{{ item.unit }}">
+            <span class="item-text">{{ item.name }} - {{ item.quantity|floatformat:0 }} {{ item.unit }}</span>
+          </li>
+        {% empty %}
+          <li class="list-group-item">Список покупок пуст</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    
+    <div class="col-md-6">
+      <h3>Не покупай, есть дома</h3>
+      <ul id="dom-list" class="list-group"></ul>
+    </div>
+  </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const shoppingList = document.getElementById("shopping-list");
+    const domList = document.getElementById("dom-list");
+
+    function loadState() {
+      document.querySelectorAll(".shopping-item").forEach((item) => {
+        let status = localStorage.getItem(item.dataset.item);
+        if (status === "bought") {
+          item.classList.add("bought");
+        } else if (status === "dom") {
+          item.classList.add("dom");
+          domList.appendChild(item);
+        }
+      });
+    }
+
+    shoppingList.addEventListener("click", function (e) {
+      let item = e.target.closest(".shopping-item");
+      if (!item) return;
+
+      let itemName = item.dataset.item;
+
+      if (item.classList.contains("dom")) return; 
+
+      if (item.classList.contains("bought")) {
+        item.classList.remove("bought");
+        localStorage.removeItem(itemName);
+      } else {
+        item.classList.add("bought");
+        localStorage.setItem(itemName, "bought");
+      }
+    });
+
+    shoppingList.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+      let item = e.target.closest(".shopping-item");
+      if (!item) return;
+
+      let itemName = item.dataset.item;
+
+      item.classList.add("dom");
+      item.classList.remove("bought");
+      localStorage.setItem(itemName, "dom");
+
+      domList.appendChild(item); 
+    });
+
+    domList.addEventListener("click", function (e) {
+      let item = e.target.closest(".shopping-item");
+      if (!item) return;
+
+      let itemName = item.dataset.item;
+
+      item.classList.remove("dom");
+      localStorage.removeItem(itemName);
+
+      shoppingList.appendChild(item); 
+    });
+
+    loadState();
+  });
+</script>
+
 {% endblock %}

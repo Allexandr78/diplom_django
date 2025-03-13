@@ -11,3 +11,4 @@ class MenuItemAdmin(admin.ModelAdmin):
     list_display = ("user", "day", "recipe")
     list_filter = ("user", "day")
     search_fields = ("user__username", "day", "recipe__title")
+ 
