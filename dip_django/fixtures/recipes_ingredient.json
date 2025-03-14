@@ -1,0 +1,324 @@
+[
+    {
+        "id": 1,
+        "name": "Фарш мясной (смешанный)",
+        "quantity": 500.0,
+        "recipe_id": 1,
+        "unit": "г."
+    },
+    {
+        "id": 2,
+        "name": "Мука",
+        "quantity": 500.0,
+        "recipe_id": 2,
+        "unit": "г."
+    },
+    {
+        "id": 3,
+        "name": "Вода",
+        "quantity": 500.0,
+        "recipe_id": 2,
+        "unit": "мл."
+    },
+    {
+        "id": 4,
+        "name": "Масло растительное",
+        "quantity": 2.0,
+        "recipe_id": 2,
+        "unit": "ст. л."
+    },
+    {
+        "id": 5,
+        "name": "Дрожжи сухие",
+        "quantity": 1.0,
+        "recipe_id": 2,
+        "unit": "ч. л."
+    },
+    {
+        "id": 6,
+        "name": "Соль",
+        "quantity": 1.0,
+        "recipe_id": 2,
+        "unit": "ч. л."
+    },
+    {
+        "id": 7,
+        "name": "Сахар",
+        "quantity": 1.0,
+        "recipe_id": 2,
+        "unit": "ст. л. "
+    },
+    {
+        "id": 8,
+        "name": "Мясо (говядина и свинина)",
+        "quantity": 500.0,
+        "recipe_id": 2,
+        "unit": "г."
+    },
+    {
+        "id": 9,
+        "name": "Лук репчатый",
+        "quantity": 3.0,
+        "recipe_id": 2,
+        "unit": "шт."
+    },
+    {
+        "id": 10,
+        "name": "Перец черный молотый",
+        "quantity": 5.0,
+        "recipe_id": 2,
+        "unit": "г."
+    },
+    {
+        "id": 11,
+        "name": "Соль",
+        "quantity": 5.0,
+        "recipe_id": 2,
+        "unit": "г."
+    },
+    {
+        "id": 12,
+        "name": "Масло растительное рафинированное",
+        "quantity": 200.0,
+        "recipe_id": 2,
+        "unit": "г."
+    },
+    {
+        "id": 13,
+        "name": "Лук репчатый",
+        "quantity": 2.0,
+        "recipe_id": 1,
+        "unit": "шт."
+    },
+    {
+        "id": 14,
+        "name": "Картофель",
+        "quantity": 2.0,
+        "recipe_id": 1,
+        "unit": "шт."
+    },
+    {
+        "id": 15,
+        "name": "Чеснок",
+        "quantity": 2.0,
+        "recipe_id": 1,
+        "unit": "зубчика"
+    },
+    {
+        "id": 16,
+        "name": "Яйцо",
+        "quantity": 1.0,
+        "recipe_id": 1,
+        "unit": "шт."
+    },
+    {
+        "id": 17,
+        "name": "Сметана",
+        "quantity": 1.0,
+        "recipe_id": 1,
+        "unit": "ст. л."
+    },
+    {
+        "id": 18,
+        "name": "Мука",
+        "quantity": 7.0,
+        "recipe_id": 1,
+        "unit": "г."
+    },
+    {
+        "id": 19,
+        "name": "Соль",
+        "quantity": 1.0,
+        "recipe_id": 1,
+        "unit": "ч. л."
+    },
+    {
+        "id": 20,
+        "name": "Перец молотый",
+        "quantity": 1.0,
+        "recipe_id": 1,
+        "unit": "ч. л."
+    },
+    {
+        "id": 21,
+        "name": "Масло растительное для жарки",
+        "quantity": 50.0,
+        "recipe_id": 1,
+        "unit": "г."
+    },
+    {
+        "id": 22,
+        "name": "Грудинка говяжья (на кости)",
+        "quantity": 500.0,
+        "recipe_id": 3,
+        "unit": "г."
+    },
+    {
+        "id": 23,
+        "name": "Рёбра свиные",
+        "quantity": 300.0,
+        "recipe_id": 3,
+        "unit": "г."
+    },
+    {
+        "id": 24,
+        "name": "Ветчина",
+        "quantity": 100.0,
+        "recipe_id": 3,
+        "unit": "г."
+    },
+    {
+        "id": 25,
+        "name": "Колбаса копчёная",
+        "quantity": 100.0,
+        "recipe_id": 3,
+        "unit": "г."
+    },
+    {
+        "id": 26,
+        "name": "Сосиски молочные",
+        "quantity": 100.0,
+        "recipe_id": 3,
+        "unit": "г."
+    },
+    {
+        "id": 27,
+        "name": "Бекон копчёный",
+        "quantity": 150.0,
+        "recipe_id": 3,
+        "unit": "г."
+    },
+    {
+        "id": 28,
+        "name": "Огурцы солёные (бочковые)",
+        "quantity": 150.0,
+        "recipe_id": 3,
+        "unit": "г."
+    },
+    {
+        "id": 29,
+        "name": "Лук репчатый",
+        "quantity": 2.0,
+        "recipe_id": 3,
+        "unit": "шт."
+    },
+    {
+        "id": 30,
+        "name": "Морковь",
+        "quantity": 1.0,
+        "recipe_id": 3,
+        "unit": "шт."
+    },
+    {
+        "id": 31,
+        "name": "Томатная паста",
+        "quantity": 1.0,
+        "recipe_id": 3,
+        "unit": "ст. л."
+    },
+    {
+        "id": 32,
+        "name": "Оливки и маслины (без косточек)",
+        "quantity": 100.0,
+        "recipe_id": 3,
+        "unit": "г."
+    },
+    {
+        "id": 33,
+        "name": "Лавровый лист",
+        "quantity": 2.0,
+        "recipe_id": 3,
+        "unit": "шт."
+    },
+    {
+        "id": 34,
+        "name": "Соль",
+        "quantity": 1.0,
+        "recipe_id": 3,
+        "unit": "ч. л."
+    },
+    {
+        "id": 35,
+        "name": "Перец чёрный молотый",
+        "quantity": "1,5",
+        "recipe_id": 3,
+        "unit": "ч. л."
+    },
+    {
+        "id": 36,
+        "name": "Вода",
+        "quantity": 2000.0,
+        "recipe_id": 3,
+        "unit": "мл."
+    },
+    {
+        "id": 37,
+        "name": "Лимон",
+        "quantity": "0,5",
+        "recipe_id": 3,
+        "unit": "шт."
+    },
+    {
+        "id": 38,
+        "name": "Зелень свежая",
+        "quantity": 100.0,
+        "recipe_id": 3,
+        "unit": "г."
+    },
+    {
+        "id": 39,
+        "name": "Говядина",
+        "quantity": 600.0,
+        "recipe_id": 4,
+        "unit": "г."
+    },
+    {
+        "id": 40,
+        "name": "Лук репчатый",
+        "quantity": 2.0,
+        "recipe_id": 4,
+        "unit": "шт."
+    },
+    {
+        "id": 41,
+        "name": "Масло сливочное",
+        "quantity": 100.0,
+        "recipe_id": 4,
+        "unit": "г."
+    },
+    {
+        "id": 42,
+        "name": "Чеснок",
+        "quantity": 2.0,
+        "recipe_id": 4,
+        "unit": "зубчика"
+    },
+    {
+        "id": 43,
+        "name": "Вода",
+        "quantity": 150.0,
+        "recipe_id": 4,
+        "unit": "мл."
+    },
+    {
+        "id": 44,
+        "name": "Соль",
+        "quantity": "0,5",
+        "recipe_id": 4,
+        "unit": "ч. л."
+    },
+    {
+        "id": 45,
+        "name": "Сахар",
+        "quantity": 1.0,
+        "recipe_id": 4,
+        "unit": "ч. л."
+    },
+    {
+        "id": 46,
+        "name": "Уксус 6%",
+        "quantity": 1.0,
+        "recipe_id": 4,
+        "unit": "ч. л."
+    }
+]
