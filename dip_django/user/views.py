@@ -1,41 +1,60 @@
 """Модуль представлений приложения user."""
 
-from calendar import c
-from django.shortcuts import render
-from django.template import context
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from .forms import ProfileForm
 
 
-def login(request):
-    """Функция отображения страницы входа пользователя."""
-    context = {
-        "title": "Вход",
-        "content": "Для входа введите логин и пароль.",
-    }
+def user_login(request):
+    """Функция входа пользователя."""
+    if request.method == "POST":
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect("user:profile")
+    else:
+        form = AuthenticationForm()
+
+    context = {"title": "Вход", "form": form}
     return render(request, "user/login.html", context)
 
 
-def registration(request):
-    """Функция отображения страницы регистрации пользователя."""
-    context = {
-        "title": "Регистрация",
-        "content": "Для регистрации введите логин, пароль и адрес электронной почты.",
-    }
+def user_registration(request):
+    """Функция регистрации пользователя."""
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("login")
+    else:
+        form = UserCreationForm()
+
+    context = {"title": "Регистрация", "form": form}
     return render(request, "user/registration.html", context)
 
 
-def profile(request):
-    """Функция отображения страницы профиля пользователя."""
-    context = {
-        "title": "Профиль",
-        "content": "Для изменения данных введите новые значения.",
-    }
+@login_required
+def user_profile(request):
+    """Функция отображения профиля пользователя."""
+
+    profile = request.user.profile
+
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect("user:profile")
+    else:
+        form = ProfileForm(instance=profile)
+
+    context = {"title": "Профиль", "form": form, "profile": profile}
     return render(request, "user/profile.html", context)
 
 
-def logout(request):
-    """Функция отображения страницы выхода пользователя."""
-    context = {
-        "title": "Выход",
-        "content": "Для выхода нажмите кнопку «Выйти».",
-    }
-    return render(request, "user/logout.html", context)
+def user_logout(request):
+    """Функция выхода пользователя."""
+    logout(request)
+    return redirect("home")
