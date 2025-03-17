@@ -24,11 +24,12 @@ def user_login(request):
 
 def user_registration(request):
     """Функция регистрации пользователя."""
+    print("Запрос пришёл, метод:", request.method)
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("login")
+            return redirect("user:profile")
     else:
         form = UserCreationForm()
 
@@ -39,16 +40,25 @@ def user_registration(request):
 @login_required
 def user_profile(request):
     """Функция отображения профиля пользователя."""
-
-    profile = request.user.profile
+    profile = request.user.profile  
+    user = request.user  
 
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
-            form.save()
-            return redirect("user:profile")
+            profile = form.save(commit=False)  
+            user.first_name = form.cleaned_data["first_name"]
+            user.last_name = form.cleaned_data["last_name"]
+            user.email = form.cleaned_data["email"]
+            user.save()  
+            profile.save()  
+            return redirect("user:profile")  
     else:
-        form = ProfileForm(instance=profile)
+        form = ProfileForm(instance=profile, initial={
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "email": user.email
+        })
 
     context = {"title": "Профиль", "form": form, "profile": profile}
     return render(request, "user/profile.html", context)

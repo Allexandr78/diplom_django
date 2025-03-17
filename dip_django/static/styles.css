@@ -1,8 +1,14 @@
 body {
   font-family: Figtree;
   background-image: url(img/home/home.jpg);
+  padding-top: 50px;
 }
 
+@media (max-width: 768px) {
+  body {
+      padding-top: 100px; 
+  }
+}
 
 header {
   margin-bottom: 2rem;
