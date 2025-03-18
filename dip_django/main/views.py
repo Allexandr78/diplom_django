@@ -11,7 +11,7 @@ def home(request):
         В данной функции создается словарь home_context, который содержит информацию о странице.
         Далее функция render возвращает страницу home.html, передавая в нее словарь home_context.
     '''
-    home_context = {"title": "Главная", "content": "Добро пожаловать на главную страницу"}
+    home_context = {"title": "Главная", "content": "Вам нужно накормить семью?"}
 
     return render(request, "main/home.html", home_context)
 
