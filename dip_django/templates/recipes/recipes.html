@@ -7,7 +7,13 @@
       {% for recip in recipes %}
         <div class="col-md-4">
           <div class="card shadow-sm recept_card">
-            <img src="{{ recip.image.url }}" class="card-img-top" alt="{{ recip.title }}" />
+            {% comment %} <img src="{{ recip.image.url }}" class="card-img-top" alt="{{ recip.title }}" /> {% endcomment %}
+            {% if recip.image %}
+              <img src="{{ recip.image.url }}" class="card-img-top" alt="{{ recip.title }}" />
+            {% else %}
+              <img src="/static/images/default_recipe.jpg" class="card-img-top" alt="No image available" />
+            {% endif %}
+
             <div class="card-body">
               <h5 class="card-title">{{ recip.title }}</h5>
               <p class="card-text">{{ recip.description|truncatechars:100 }}</p>

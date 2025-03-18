@@ -73,9 +73,15 @@ def generate_shopping_list(request):
             except ValueError:
                 quantity = 0.0
 
-            if unit in UNIT_CONVERSION and key in UNIT_CONVERSION[unit]:
-                quantity *= UNIT_CONVERSION[unit][key]
-                unit = "г"
+           
+            if unit in UNIT_CONVERSION:
+                conversion = UNIT_CONVERSION[unit]
+                if isinstance(conversion, dict) and key in conversion:
+                    quantity *= conversion[key]
+                    unit = "г"
+                elif isinstance(conversion, (int, float)):
+                    quantity *= conversion
+                    unit = "г"
 
             ingredient_dict[key]["quantity"] += quantity
             ingredient_dict[key]["unit"] = unit

@@ -14,7 +14,7 @@
             <h3>Ингредиенты:</h3>
             <ul class="list-group">
                 {% for ingredient in ingredients %}
-                    <li class="list-group-item">{{ ingredient.name }} - {{ ingredient.quantity }}</li>
+                    <li class="list-group-item">{{ ingredient.name }} - {{ ingredient.quantity }} {{ ingredient.unit }}</li>
                 {% endfor %}
             </ul>
         </div>

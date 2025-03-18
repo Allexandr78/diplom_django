@@ -2,10 +2,9 @@
 {% load static %}
 
 {% block content %}
-
-  <div class="container mt-4 ">
+  <div class="container mt-4">
     <h2 class="mb-4">Добавить новый рецепт</h2>
-    <form method="POST" enctype="multipart/form-data" class="shadow p-4  rounded">
+    <form method="POST" enctype="multipart/form-data" class="shadow p-4 rounded">
       {% csrf_token %}
       <div class="mb-3">{{ recipe_form.title.label_tag }}
         {{ recipe_form.title }}</div>
@@ -18,17 +17,24 @@
       <div id="ingredients">
         <div class="row mb-2">
           <div class="col">
-            <input type="text" name="ingredient_name" class="form-control" placeholder="Название ингредиента" />
+            <input type="text" name="ingredient_name" class="form-control" placeholder="Название ингредиента" required />
           </div>
           <div class="col">
-            <input type="text" name="ingredient_quantity" class="form-control" placeholder="Количество" />
+            <input type="number" name="ingredient_quantity" class="form-control" placeholder="Количество" step="0.01" required />
+          </div>
+          <div class="col">
+            <select name="ingredient_unit" class="form-control">
+              <option value="г">г</option>
+              <option value="мл">мл</option>
+              <option value="шт">шт</option>
+            </select>
           </div>
           <div class="col-auto">
             <button type="button" class="btn btn-success add-ingredient">+</button>
           </div>
         </div>
       </div>
-
+      
       <h4>Пошаговый рецепт</h4>
       <div id="steps">
         <div class="row mb-2">
@@ -49,19 +55,27 @@
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       document.querySelector('.add-ingredient').addEventListener('click', function () {
+        let ingredientsDiv = document.getElementById('ingredients')
         let ingredientDiv = document.createElement('div')
         ingredientDiv.classList.add('row', 'mb-2')
         ingredientDiv.innerHTML = `
-                  <div class="col">
-                      <input type="text" name="ingredient_name" class="form-control" placeholder="Название ингредиента">
-                  </div>
-                  <div class="col">
-                      <input type="text" name="ingredient_quantity" class="form-control" placeholder="Количество">
-                  </div>
-                  <div class="col-auto">
-                      <button type="button" class="btn btn-danger remove-ingredient">-</button>
-                  </div>
-              `
+                          <div class="col">
+                              <input type="text" name="ingredient_name" class="form-control" placeholder="Название ингредиента">
+                          </div>
+                          <div class="col">
+                              <input type="text" name="ingredient_quantity" class="form-control" placeholder="Количество" step="0.01" required>
+                          </div>
+                          <div class="col">
+                            <select name="ingredient_unit" class="form-control">
+                              <option value="г">г</option>
+                              <option value="мл">мл</option>
+                              <option value="шт">шт</option>
+                            </select>
+                          </div>
+                          <div class="col-auto">
+                              <button type="button" class="btn btn-danger remove-ingredient">-</button>
+                          </div>
+                      `
         document.getElementById('ingredients').appendChild(ingredientDiv)
       })
     
@@ -75,13 +89,13 @@
         let stepDiv = document.createElement('div')
         stepDiv.classList.add('row', 'mb-2')
         stepDiv.innerHTML = `
-                  <div class="col">
-                      <input type="text" name="step_description" class="form-control" placeholder="Описание шага">
-                  </div>
-                  <div class="col-auto">
-                      <button type="button" class="btn btn-danger remove-step">-</button>
-                  </div>
-              `
+                          <div class="col">
+                              <input type="text" name="step_description" class="form-control" placeholder="Описание шага">
+                          </div>
+                          <div class="col-auto">
+                              <button type="button" class="btn btn-danger remove-step">-</button>
+                          </div>
+                      `
         document.getElementById('steps').appendChild(stepDiv)
       })
     
