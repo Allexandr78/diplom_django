@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+
+import user
 from .forms import ProfileForm
 
 
@@ -24,11 +26,12 @@ def user_login(request):
 
 def user_registration(request):
     """Функция регистрации пользователя."""
-    print("Запрос пришёл, метод:", request.method)
+    
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            login(request, user)
             return redirect("user:profile")
     else:
         form = UserCreationForm()
