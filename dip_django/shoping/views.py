@@ -1,4 +1,4 @@
-""" Модуль для формирования списка покупок на основе меню. """
+"""Модуль для формирования списка покупок на основе меню."""
 
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -73,15 +73,13 @@ def generate_shopping_list(request):
             except ValueError:
                 quantity = 0.0
 
-           
-            if unit in UNIT_CONVERSION:
+            if unit in UNIT_CONVERSION and unit != "г":
                 conversion = UNIT_CONVERSION[unit]
                 if isinstance(conversion, dict) and key in conversion:
-                    quantity *= conversion[key]
-                    unit = "г"
+                    quantity = conversion[key]
                 elif isinstance(conversion, (int, float)):
                     quantity *= conversion
-                    unit = "г"
+                unit = "г"
 
             ingredient_dict[key]["quantity"] += quantity
             ingredient_dict[key]["unit"] = unit
